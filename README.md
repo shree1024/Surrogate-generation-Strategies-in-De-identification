@@ -24,5 +24,5 @@ following a road accident in Dijon
 Read paper for more details [here](https://)
 
 To test this implementation, please go to the gist corresponding to the notebook of this repository - [here](https://gist.github.com/yakine8/d68a548b4abec5cacb5609511e837848). 
-You will need the dataset (paper-data.pkl) and the files (date, location, dp of this repository) : Import them in your google colab space
+You will need the location data (paper-data.pkl) and the files (date, location, dp of this repository) : Import them in your google colab space
 
