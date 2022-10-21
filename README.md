@@ -9,7 +9,7 @@ Substitution strategies in de-identification combining security and utility.  A 
 
 Substitution strategies for entities: ***Date & Age*** and ***Location*** in a medical document
 
-### Example of a sequence in a medical document: 
+#### Example of a sequence in a medical document:
 ---
 
 ```
