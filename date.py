@@ -160,43 +160,49 @@ def remove_duplicate_age(df):
   return df, result
 
 def set_interval_between_age(df):
-  indice, first_line = next(df.iterrows())
-  list_interval = []
-  list_interval.append(first_line['Value'])
-  for indice, row in df.iterrows():
-    if row['Value'] - first_line['Value'] != 0:
-      first_age = first_line['Value']
-      second_age = row['Value']
-      list_interval.append(second_age - first_age)
+  try:
+    indice, first_line = next(df.iterrows())
+    list_interval = []
+    list_interval.append(first_line['Value'])
+    for indice, row in df.iterrows():
+      if row['Value'] - first_line['Value'] != 0:
+        first_age = first_line['Value']
+        second_age = row['Value']
+        list_interval.append(second_age - first_age)
 
-  df['Age_Intervalles'] = list_interval
-  return df, list_interval
+    df['Age_Intervalles'] = list_interval
+    return df, list_interval
+  except Exception as e :
+    return df, list_interval
 
 def set_interval_between_date(df):
-  indice, first_line = next(df.iterrows())
   list_interval = []
-  for indice, row in df.iterrows():
+  try:
+    indice, first_line = next(df.iterrows())
+    for indice, row in df.iterrows():
 
-    if (row['Date'] != first_line['Date']):
-      # Calcul de l'intervalle entre les deux dates
-      first_date = first_line['Date']
-      seconde_date = row['Date']
-      
-      days = abs(first_date - seconde_date).days
-      list_interval.append(days)
+      if (row['Date'] != first_line['Date']):
+        # Calcul de l'intervalle entre les deux dates
+        first_date = first_line['Date']
+        seconde_date = row['Date']
+        
+        days = abs(first_date - seconde_date).days
+        list_interval.append(days)
 
-      first_line = row
-  # Exemple pour le papier
-  #datetime_str = '04/03/2020'
-  #datetime_object = datetime.strptime(datetime_str, '%d/%m/%Y')
-  datetime_object = datetime.now()
-  
-  list_interval.append((datetime_object-df.iloc[-1]['Date']).days)
+        first_line = row
+    # Exemple pour le papier
+    #datetime_str = '04/03/2020'
+    #datetime_object = datetime.strptime(datetime_str, '%d/%m/%Y')
+    datetime_object = datetime.now()
+    
+    list_interval.append((datetime_object-df.iloc[-1]['Date']).days)
 
-  #print(len(list_interval))
-  df['Date_Intervalles'] = list_interval
-  LIST_INTERVAL = list_interval
-  return df, LIST_INTERVAL
+    #print(len(list_interval))
+    df['Date_Intervalles'] = list_interval
+    LIST_INTERVAL = list_interval
+    return df, LIST_INTERVAL
+  except Exception as e :
+    return df, list_interval
 
 def noisy_interval(df_date, df_age ,EPSILON):
   noisy_interval_list_d = []
