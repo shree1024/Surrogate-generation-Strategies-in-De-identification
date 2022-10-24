@@ -204,17 +204,17 @@ def set_interval_between_date(df):
   except Exception as e :
     return df, list_interval
 
-def noisy_interval(df_date, df_age ,EPSILON):
+def noisy_interval(df_date, df_age ,EPSILON, SEED):
   noisy_interval_list_d = []
   noisy_interval_list_a = []
   for index, row in df_date.iterrows():
     date_interval = row['Date_Intervalles']
-    noisy_interval = dp.laplace_noise(date_interval,EPSILON)
+    noisy_interval = dp.laplace_noise(date_interval,EPSILON,SEED)
     noisy_interval_list_d.append(noisy_interval)
 
   for index, row in df_age.iterrows():
     age_interval = row['Age_Intervalles']
-    noisy_interval = dp.laplace_noise(age_interval, EPSILON)
+    noisy_interval = dp.laplace_noise(age_interval, EPSILON, SEED)
     noisy_interval_list_a.append(noisy_interval)
 
   df_age['Noisy_Intervals'] = noisy_interval_list_a
