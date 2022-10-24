@@ -29,9 +29,6 @@ def bounded_laplace_mech(l,u,epsilon) :
     
   return b
 
-def laplace_noise(x,epsilon,sensitivity):
-  return x + np.random.laplace(loc=0, scale=sensitivity/epsilon)
-
 def const_proportionnel2(epsilon_G, intervals):
   somme = 0
   for x in intervals:
@@ -66,9 +63,10 @@ def calcul_epsilon_interval(list_i, CONSTANTE):
     epsilon_interval.append(epsilon)
   return epsilon_interval
 
-def laplace_noise(x,epsilon):
+def laplace_noise(x,epsilon,SEED):
   SENSITIVITY = 1
   SCALE = SENSITIVITY/epsilon
+  np.random.seed(SEED)
   x_noisy = np.random.laplace(loc=x,scale=SCALE)
   while x_noisy < 0 :
     x_noisy = np.random.laplace(loc=x,scale=SCALE)
